@@ -1,4 +1,4 @@
-package br.com.sprj.backend.shoppingapi;
+package br.com.sprj.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

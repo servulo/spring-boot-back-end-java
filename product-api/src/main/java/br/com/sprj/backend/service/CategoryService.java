@@ -8,6 +8,7 @@ import br.com.sprj.backend.repository.CategoryRepository;
 @Service
 public class CategoryService {
 
+	@SuppressWarnings("unused")
 	@Autowired
 	private CategoryRepository categoryRepository;
 
