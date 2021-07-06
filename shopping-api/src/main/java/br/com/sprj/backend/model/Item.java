@@ -2,6 +2,8 @@ package br.com.sprj.backend.model;
 
 import javax.persistence.Embeddable;
 
+import br.com.sprj.backend.dto.ItemDTO;
+
 @Embeddable
 public class Item {
 
@@ -23,6 +25,13 @@ public class Item {
 
 	public void setPrice(Float price) {
 		this.price = price;
+	}
+
+	public static Item convert(ItemDTO itemDTO) {
+		Item item = new Item();
+		item.setProductIdentifier(itemDTO.getProductIdentifier());
+		item.setPrice(itemDTO.getPrice());
+		return item;
 	}
 
 }
