@@ -8,7 +8,6 @@ import br.com.sprj.backend.dto.ItemDTO;
 public class Item {
 
 	private String productIdentifier;
-
 	private Float price;
 
 	public String getProductIdentifier() {
