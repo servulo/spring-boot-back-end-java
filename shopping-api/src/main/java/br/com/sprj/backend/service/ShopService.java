@@ -20,17 +20,26 @@ public class ShopService {
 
 	public List<ShopDTO> getAll() {
 		List<Shop> shops = shopRepository.findAll();
-		return shops.stream().map(ShopDTO::convert).collect(Collectors.toList());
+		return shops
+				.stream()
+				.map(ShopDTO::convert)
+				.collect(Collectors.toList());
 	}
 
 	public List<ShopDTO> getByUser(String userIdentifier) {
 		List<Shop> shops = shopRepository.findAllByUserIdentifier(userIdentifier);
-		return shops.stream().map(ShopDTO::convert).collect(Collectors.toList());
+		return shops
+				.stream()
+				.map(ShopDTO::convert)
+				.collect(Collectors.toList());
 	}
 
 	public List<ShopDTO> getByDate(ShopDTO shopDTO) {
-		List<Shop> shops = shopRepository.findAllByDateGreaterThan(shopDTO.getDate());
-		return shops.stream().map(ShopDTO::convert).collect(Collectors.toList());
+		List<Shop> shops = shopRepository.findAllByDateGreaterThanEqual(shopDTO.getDate());
+		return shops
+				.stream()
+				.map(ShopDTO::convert)
+				.collect(Collectors.toList());
 
 	}
 
@@ -43,7 +52,11 @@ public class ShopService {
 	}
 
 	public ShopDTO save(ShopDTO shopDTO) {
-		shopDTO.setTotal(shopDTO.getItems().stream().map(x -> x.getPrice()).reduce((float) 0, Float::sum));
+		shopDTO.setTotal(shopDTO.getItems()
+				.stream()
+				.map(x -> x.getPrice())
+				.reduce((float) 0, Float::sum));
+		
 		Shop shop = Shop.convert(shopDTO);
 		shop.setDate(new Date());
 		shop = shopRepository.save(shop);

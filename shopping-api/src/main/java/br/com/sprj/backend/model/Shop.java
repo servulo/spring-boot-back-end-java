@@ -21,8 +21,11 @@ public class Shop {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	private String userIdentifier;
+	
 	private float total;
+	
 	private Date date;
 
 	@ElementCollection(fetch = FetchType.EAGER)
@@ -74,7 +77,11 @@ public class Shop {
 		shop.setUserIdentifier(shopDTO.getUserIdentifier());
 		shop.setTotal(shopDTO.getTotal());
 		shop.setDate(shopDTO.getDate());
-		shop.setItems(shopDTO.getItems().stream().map(Item::convert).collect(Collectors.toList()));
+		shop.setItems(shopDTO
+				.getItems()
+				.stream()
+				.map(Item::convert)
+				.collect(Collectors.toList()));
 		return shop;
 	}
 
