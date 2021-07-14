@@ -3,8 +3,6 @@ package br.com.sprj.backend.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import br.com.sprj.backend.model.Item;
-
 public class ItemDTO {
 
 	@NotBlank
@@ -27,13 +25,6 @@ public class ItemDTO {
 
 	public void setPrice(Float price) {
 		this.price = price;
-	}
-
-	public static ItemDTO itemDTO(Item item) {
-		ItemDTO itemDTO = new ItemDTO();
-		itemDTO.setProductIdentifier(item.getProductIdentifier());
-		itemDTO.setPrice(item.getPrice());
-		return itemDTO;
 	}
 
 }

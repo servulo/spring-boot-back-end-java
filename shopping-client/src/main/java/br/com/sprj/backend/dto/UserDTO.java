@@ -2,8 +2,6 @@ package br.com.sprj.backend.dto;
 
 import java.util.Date;
 
-import br.com.sprj.backend.model.User;
-
 public class UserDTO {
 
 	private String name;
@@ -12,17 +10,6 @@ public class UserDTO {
 	private String email;
 	private String telephone;
 	private Date registrationDate;
-
-	public static UserDTO convert(User user) {
-		UserDTO userDTO = new UserDTO();
-		userDTO.setName(user.getName());
-		userDTO.setSocialSecurity(user.getSocialSecurity());
-		userDTO.setAddress(user.getAddress());
-		userDTO.setEmail(user.getEmail());
-		userDTO.setTelephone(user.getTelephone());
-		userDTO.setRegistrationDate(user.getRegistrationDate());
-		return userDTO;
-	}
 
 	public String getName() {
 		return name;

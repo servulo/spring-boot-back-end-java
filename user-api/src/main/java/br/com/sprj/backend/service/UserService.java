@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.sprj.backend.converter.DTOConverter;
 import br.com.sprj.backend.dto.UserDTO;
 import br.com.sprj.backend.model.User;
 import br.com.sprj.backend.repository.UserRepository;
@@ -19,20 +20,20 @@ public class UserService {
 
 	public List<UserDTO> getAll() {
 		List<User> users = userRepository.findAll();
-		return users.stream().map(UserDTO::convert).collect(Collectors.toList());
+		return users.stream().map(DTOConverter::convert).collect(Collectors.toList());
 	}
 
 	public UserDTO findById(long userId) {
 		Optional<User> user = userRepository.findById(userId);
 		if (user.isPresent()) {
-			return UserDTO.convert(user.get());
+			return DTOConverter.convert(user.get());
 		}
 		return null;
 	}
 
 	public UserDTO save(UserDTO userDTO) {
 		User user = userRepository.save(User.convert(userDTO));
-		return UserDTO.convert(user);
+		return DTOConverter.convert(user);
 	}
 
 	public UserDTO delete(long userId) {
@@ -46,14 +47,14 @@ public class UserService {
 	public UserDTO findBySocialSecurity(String socialSecurity) {
 		User user = userRepository.findBySocialSecurity(socialSecurity);
 		if (user != null) {
-			return UserDTO.convert(user);
+			return DTOConverter.convert(user);
 		}
 		return null;
 	}
 
 	public List<UserDTO> queryByName(String name) {
 		List<User> users = userRepository.queryByNameLike(name);
-		return users.stream().map(UserDTO::convert).collect(Collectors.toList());
+		return users.stream().map(DTOConverter::convert).collect(Collectors.toList());
 	}
 
 }
