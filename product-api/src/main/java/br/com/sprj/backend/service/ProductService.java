@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.sprj.backend.converter.DTOConverter;
 import br.com.sprj.backend.dto.ProductDTO;
+import br.com.sprj.backend.exception.CategoryNotFoundException;
+import br.com.sprj.backend.exception.ProductNotFoundException;
 import br.com.sprj.backend.model.Product;
+import br.com.sprj.backend.repository.CategoryRepository;
 import br.com.sprj.backend.repository.ProductRepository;
 
 @Service
@@ -17,6 +20,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	public List<ProductDTO> getAll() {
 		List<Product> products = productRepository.findAll();
@@ -33,20 +39,24 @@ public class ProductService {
 		if (product != null) {
 			return DTOConverter.convert(product);
 		}
-		return null;
+		throw new ProductNotFoundException();
 	}
 
 	public ProductDTO save(ProductDTO productDTO) {
+		Boolean existsCategory = categoryRepository.existsById(productDTO.getCategory().getId());
+		if(!existsCategory) {
+			throw new CategoryNotFoundException();
+		}
 		Product product = productRepository.save(Product.convert(productDTO));
 		return DTOConverter.convert(product);
 	}
 
-	public ProductDTO delete(long productId) {
+	public ProductDTO delete(long productId) throws ProductNotFoundException {
 		Optional<Product> product = productRepository.findById(productId);
 		if (product.isPresent()) {
 			productRepository.delete(product.get());
 		}
-		return null;
+		throw new ProductNotFoundException();
 	}
 
 }

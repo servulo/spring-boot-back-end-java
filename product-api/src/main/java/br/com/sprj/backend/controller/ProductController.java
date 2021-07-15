@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sprj.backend.dto.ProductDTO;
+import br.com.sprj.backend.exception.ProductNotFoundException;
 import br.com.sprj.backend.service.ProductService;
 
 @RestController

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.sprj.backend.converter.DTOConverter;
 import br.com.sprj.backend.dto.UserDTO;
+import br.com.sprj.backend.exception.UserNotFoundException;
 import br.com.sprj.backend.model.User;
 import br.com.sprj.backend.repository.UserRepository;
 
@@ -49,7 +50,7 @@ public class UserService {
 		if (user != null) {
 			return DTOConverter.convert(user);
 		}
-		return null;
+		throw new UserNotFoundException();
 	}
 
 	public List<UserDTO> queryByName(String name) {
