@@ -9,18 +9,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import br.com.sprj.backend.dto.ErrorDTO;
+import br.com.sprj.backend.exception.ProductNotFoundException;
 import br.com.sprj.backend.exception.UserNotFoundException;
 
 @ControllerAdvice(basePackages = "br.com.sprj.backend.controller")
-public class UserControllerAdvice {
+public class ShoppingControllerAdvice {
 
 	@ResponseBody
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	@ExceptionHandler(UserNotFoundException.class)
 	public ErrorDTO handleUserNotFound(UserNotFoundException userNotFoundException) {
 		ErrorDTO errorDTO = new ErrorDTO();
 		errorDTO.setStatus(HttpStatus.NOT_FOUND.value());
-		errorDTO.setMessage("User not found");
+		errorDTO.setMessage("Product not found.");
+		errorDTO.setTimeStamp(new Date());
+		return errorDTO;
+	}
+
+	@ResponseBody
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ExceptionHandler(ProductNotFoundException.class)
+	public ErrorDTO handleProductNotFound(ProductNotFoundException productNotFoundException) {
+		ErrorDTO errorDTO = new ErrorDTO();
+		errorDTO.setStatus(HttpStatus.NOT_FOUND.value());
+		errorDTO.setMessage("User not found.");
 		errorDTO.setTimeStamp(new Date());
 		return errorDTO;
 	}
