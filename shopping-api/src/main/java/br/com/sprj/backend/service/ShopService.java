@@ -12,6 +12,7 @@ import br.com.sprj.backend.converter.DTOConverter;
 import br.com.sprj.backend.dto.ItemDTO;
 import br.com.sprj.backend.dto.ProductDTO;
 import br.com.sprj.backend.dto.ShopDTO;
+import br.com.sprj.backend.dto.UserDTO;
 import br.com.sprj.backend.model.Shop;
 import br.com.sprj.backend.repository.ShopRepository;
 
@@ -60,13 +61,10 @@ public class ShopService {
 		return null;
 	}
 	
-	public ShopDTO save(ShopDTO shopDTO) {
-		if(userService.getUserBySocialSecurity(shopDTO.getUserIdentifier()) == null) {
-			return null;
-		}
-		if(!validateProducts(shopDTO.getItems())) {
-			return null;
-		}
+	@SuppressWarnings("unused")
+	public ShopDTO save(ShopDTO shopDTO, String key) {
+		UserDTO userDTO = userService.getUserBySocialSecurity(shopDTO.getUserIdentifier(), key);
+		validateProducts(shopDTO.getItems());
 		shopDTO.setTotal(shopDTO.getItems()
 				.stream()
 				.map(x -> x.getPrice())

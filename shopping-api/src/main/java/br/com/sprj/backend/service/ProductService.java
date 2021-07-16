@@ -14,14 +14,13 @@ public class ProductService {
 	public ProductDTO getProductByIdentifier(String productIdentifier) {
 		try {
 			RestTemplate restTemplate = new RestTemplate();
-			String url = "http://localhost:8081/product" + productIdentifier;
+			String url = "http://localhost:8081/product/" + productIdentifier;
+			System.out.println(url);
 			ResponseEntity<ProductDTO> response = restTemplate.getForEntity(url, ProductDTO.class);
 			return response.getBody();			
 		} catch (HttpClientErrorException.NotFound e) {
 			throw new ProductNotFoundException();
 		}
 	}
-	
-	
 
 }

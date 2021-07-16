@@ -41,8 +41,9 @@ public class UserController {
 	}
 
 	@GetMapping("/user/ss/{socialSecurity}")
-	UserDTO findBySocialSecurity(@PathVariable String socialSecurity) {
-		return userService.findBySocialSecurity(socialSecurity);
+	UserDTO findBySocialSecurity(@RequestParam(name = "key", required = true) String key,
+			@PathVariable String socialSecurity) {
+		return userService.findBySocialSecurity(socialSecurity, key);
 	}
 
 	@DeleteMapping("/user/{id}")
@@ -51,9 +52,8 @@ public class UserController {
 	}
 
 	@GetMapping("/user/search")
-	public List<UserDTO> queryByName(
-			@RequestParam(name="name", required = true) String name) {
-	    return userService.queryByName(name);
+	public List<UserDTO> queryByName(@RequestParam(name = "name", required = true) String name) {
+		return userService.queryByName(name);
 	}
 
 }

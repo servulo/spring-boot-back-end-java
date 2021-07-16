@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 import br.com.sprj.backend.dto.UserDTO;
 
-@Entity
+@Entity(name = "user")
 public class User {
 
 	@Id
@@ -21,6 +21,7 @@ public class User {
 	private String email;
 	private String telephone;
 	private Date registrationDate;
+	private String key;
 
 	public static User convert(UserDTO userDTO) {
 		User user = new User();
@@ -30,6 +31,7 @@ public class User {
 		user.setEmail(userDTO.getEmail());
 		user.setTelephone(userDTO.getTelephone());
 		user.setRegistrationDate(userDTO.getRegistrationDate());
+		user.setKey(userDTO.getKey());
 		return user;
 	}
 
@@ -87,6 +89,14 @@ public class User {
 
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 }

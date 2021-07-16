@@ -10,6 +10,7 @@ public class UserDTO {
 	private String email;
 	private String telephone;
 	private Date registrationDate;
+	private String key;
 
 	public String getName() {
 		return name;
@@ -57,6 +58,14 @@ public class UserDTO {
 
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 }

@@ -31,7 +31,7 @@ public class ShoppingControllerAdvice {
 	public ErrorDTO handleProductNotFound(ProductNotFoundException productNotFoundException) {
 		ErrorDTO errorDTO = new ErrorDTO();
 		errorDTO.setStatus(HttpStatus.NOT_FOUND.value());
-		errorDTO.setMessage("User not found.");
+		errorDTO.setMessage("Product not found.");
 		errorDTO.setTimeStamp(new Date());
 		return errorDTO;
 	}
