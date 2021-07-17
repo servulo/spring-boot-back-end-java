@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.sprj.backend</groupId>
 	<artifactId>shopping-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -37,4 +37,23 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.9</version>
+				<configuration>
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<properties>
+		<docker.image.prefix>store</docker.image.prefix>
+	</properties>
 </project>
