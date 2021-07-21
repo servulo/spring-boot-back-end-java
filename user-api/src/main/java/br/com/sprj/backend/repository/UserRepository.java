@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	List<User> queryByNameLike(String name);
 
+	User findBySocialSecurityAndKey(String socialSecurity, String key);
+
 }
