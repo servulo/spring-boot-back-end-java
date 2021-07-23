@@ -7,7 +7,6 @@ public class DTOConverter {
 
 	public static UserDTO convert(User user) {
 		UserDTO userDTO = new UserDTO();
-
 		userDTO.setName(user.getName());
 		userDTO.setSocialSecurity(user.getSocialSecurity());
 		userDTO.setAddress(user.getAddress());
